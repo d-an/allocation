@@ -1,7 +1,7 @@
 Generate data
 -------------
 
-```
+```python
 np.random.seed(123)
 sigma = np.array([[1,0.2,0.5],
                   [0.2,1,0.1],
