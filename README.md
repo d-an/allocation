@@ -1,3 +1,11 @@
+The package implements some capital allocation rules following literature mentioned below. 
+
+Installation
+============
+To install the package you can use pip: 
+`pip install git+git://github.com/d-an/allocation`
+
+
 Generate data
 -------------
 
