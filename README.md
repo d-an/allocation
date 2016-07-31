@@ -1,14 +1,17 @@
 The package implements some capital allocation rules following literature mentioned below. 
 
 Installation
-============
+------------
 To install the package you can use pip: 
 `pip install git+git://github.com/d-an/allocation`
 
 
-Generate data
--------------
+How To Use
+----------
 
+
+
+### Generate Data
 ```python
 np.random.seed(123)
 sigma = np.array([[1,0.2,0.5],
