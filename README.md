@@ -15,7 +15,7 @@ passed to some allocation rule. Object representing an allocation rule can subse
 a graph etc. Let's illustrate this with an example:
 
 
-##### Generate Data
+##### Get the Data
 Some imports first:
 ```python
 import numpy as np
@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 ```
 
-now generate the data:
+now for the purpose of this example let's simply generate some data from a multivariate normal distribution:
 ```python
 np.random.seed(123)
 sigma = np.array([[1,0.2,0.5],
@@ -33,7 +33,7 @@ sigma = np.array([[1,0.2,0.5],
 data = np.random.multivariate_normal([1,2,3], sigma, 1000)
 ```
 
-##### Create the Losses instance
+##### Create the Losses Instance
 *K* - the overall amount to be allocated between individual risks - can be calculated e.g. as a quantile of the sum
 of the individual risks: `K = norm(6, np.sqrt(sigma.sum())).ppf(0.95)`.
 ```python
