@@ -1,4 +1,4 @@
-The package implements some capital allocation rules explained e.g. in the literature mentioned in the references below. 
+This package implements some capital allocation rules explained e.g. in the literature mentioned in the references below. 
 
 Installation
 ------------
@@ -9,9 +9,22 @@ To install the package you can use pip:
 How To Use
 ----------
 
+There are two types of objects in this package. First, you create an instance of Losses which encapsulates the data you 
+have about the losses - *nxk* matrix with *n* observations of losses of *k* lines of business. Then this instance is 
+passed to some allocation rule. Object representing an allocation rule can subsequently calculate the allocations, draw
+a graph etc. Let's illustrate this with an example:
 
 
 ### Generate Data
+Some imports first:
+```python
+import numpy as np
+import allocation as allocs
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+```
+
+now generate the data:
 ```python
 np.random.seed(123)
 sigma = np.array([[1,0.2,0.5],
@@ -20,7 +33,12 @@ sigma = np.array([[1,0.2,0.5],
 data = np.random.multivariate_normal([1,2,3], sigma, 1000)
 ```
 
-
+### Create the Losses instance
+*K* - the overall amount to be allocated between individual risks - can be calculated e.g. as a quantile of the sum
+of the individual risks: `K = norm(6, np.sqrt(sigmaS)).ppf(p)`.
+```python
+l = allocs.Losses(data, K)
+```
 
 
 
@@ -29,7 +47,7 @@ data = np.random.multivariate_normal([1,2,3], sigma, 1000)
 Requirements
 ------------
 
-Written using Python 3.4, Depends on numpy, scipy, matplotlib, pandas and pyperclip (for the copy/paste functionality).
+Written using Python 3.4. Depends on numpy, scipy, matplotlib, pandas and pyperclip (for the copy/paste functionality).
 
 References
 ----------
