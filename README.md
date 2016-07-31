@@ -15,7 +15,7 @@ passed to some allocation rule. Object representing an allocation rule can subse
 a graph etc. Let's illustrate this with an example:
 
 
-### Generate Data
+###### Generate Data
 Some imports first:
 ```python
 import numpy as np
@@ -33,14 +33,26 @@ sigma = np.array([[1,0.2,0.5],
 data = np.random.multivariate_normal([1,2,3], sigma, 1000)
 ```
 
-### Create the Losses instance
+###### Create the Losses instance
 *K* - the overall amount to be allocated between individual risks - can be calculated e.g. as a quantile of the sum
-of the individual risks: `K = norm(6, np.sqrt(sigmaS)).ppf(p)`.
+of the individual risks: `K = norm(6, np.sqrt(sigma.sum())).ppf(0.95)`.
 ```python
 l = allocs.Losses(data, K)
 ```
 
+###### Use an Allocation Rule
+Let's use the haircut allocation rule: 
+```python
+rule = allocs.HaircutRule(l)
+rule.allocate()
+rule.allocations
+rule.to_clipboard()
+```
+The *allocate* method prints the allocations to the standard output. We can also find the allocations in the *allocations* 
+attribute of the *rule* object. The *to_clipboard* method can also be used if we want to paste the values somewhere else. 
 
+###### Draw a Graph
+Finally we can use the *plot* method to draw a graph with the allocations. 
 
 
 
